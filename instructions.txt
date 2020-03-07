@@ -13,6 +13,5 @@ General Instructions
  - Folder for specific: 
     (Create in your specific branches)
    /static_files_<name_of_folder>
-
 5. Work Hard
 
