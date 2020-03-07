@@ -1,0 +1,18 @@
+General Instructions 
+1. File Naming Should Be Uniform.
+ - python files should be in camel case
+ - static files should be in snake case
+ - database files should be in snake case
+ - if there are other files ask first
+2. No merging until proven working
+3. Work on your own assigned branches
+4. Folders for static files should go as follows:
+ - Folder for universal static files:
+    (If non-existent create in your branch)
+   /static_files
+ - Folder for specific: 
+    (Create in your specific branches)
+   /static_files_<name_of_folder>
+
+5. Work Hard
+
