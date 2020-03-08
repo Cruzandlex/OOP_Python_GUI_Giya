@@ -20,19 +20,19 @@ class MainWindow(QWidget):
         #DriverName.setStyleSheet('color:Princessblue')
         #DriverName.setGeometry (150,0,100,100)
         vbox=QVBoxLayout()
-        self.B1Icon= QLabel(self)
+        self.B1Icon=QLabel(self)
         pixmap = QPixmap('User.ico')
         self.B1Icon.setPixmap(pixmap)
-        
-        
-        self.Label1=QHBoxLayout()
-        Text=QLabel("               Profile",self)
-        self.Label1.addWidget(Text)
-        self.Label1.addStretch()
-
-
+        self.Label1=QLabel("           Profile",self)
+        self.Label1.setFont(QtGui.QFont("Sanserif",9))
+        self.B2Icon=QLabel(self)
+        pixmap=QPixmap('Home.ico')
+        self.B2Icon.setPixmap(pixmap)
+        self.Label2=QLabel("           Home",self)
+        self.Label2.setFont(QtGui.QFont("Sanserif",9))
         vbox.addWidget(self.B1Icon)
-        vbox.addLayout(self.Label1)
+        vbox.addWidget(self.Label1)
+        vbox.addWidget(self.B2Icon)
         vbox.addStretch()
         
     
