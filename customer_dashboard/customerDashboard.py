@@ -16,7 +16,14 @@ class mainUserUI(QMainWindow):
         self.setGeometry(self.x, self.y, self.width, self.height)
         self.setWindowIcon(QIcon(self.Icon))
 
+        #profile details
+        self.name = "Ivan Norvy Guzman"
+        self.email = "qinbguzman@tip.edu.ph"
+        self.location = "Marikina City, Metro Manila, Philippines"
+
         self.initUI()
+        self.menuBar()
+        self.profilePage()
         self.show()
 
     def initUI(self):
@@ -79,40 +86,69 @@ class mainUserUI(QMainWindow):
         self.button5.setStyleSheet("background-color:transparent")
         #self.button5.clicked.connect(self.signOut)
 
-        #users dashboard
+    def menuBar(self):
         #profile menu bar 
         self.buttonProfile = QPushButton("PROFILE", self)
         self.buttonProfile.setIcon(QIcon("profileDashico.ico"))
         self.buttonProfile.setIconSize(QSize(50,50))
         self.buttonProfile.resize(200,50)
         self.buttonProfile.move(150,5)
-        self.buttonProfile.setStyleSheet("background-color:white;color:black;border-width:1px;border-style:outset;border-radius:5px;border-color:black;font:bold 12px")
-        #profile picture 
-        self.buttonUploadPic = QPushButton("", self)
-        self.buttonUploadPic.setIcon(QIcon("uploadImageico.ico"))
-        self.buttonUploadPic.setIconSize(QSize(100,100))
-        self.buttonUploadPic.resize(100,100)
-        self.buttonUploadPic2 = QPushButton("Upload image", self)
-        self.buttonUploadPic2.move(170,190)
-        self.buttonUploadPic.move(170,80)
-        self.buttonUploadPic.clicked.connect(self.uploadProfilePic)
-        self.buttonUploadPic2.clicked.connect(self.uploadProfilePic)
-        self.label = QLabel(self)
-        self.label.setGeometry(0,0,100,100)
-        self.label.move(170,80)
-
+        self.buttonProfile.clicked.connect(self.profilePage)
+        
         #activities menu bar
         self.buttonActivities = QPushButton("ACTIVITIES", self)
         self.buttonActivities.setIcon(QIcon("activitiesico.ico"))
         self.buttonActivities.setIconSize(QSize(35,35))
         self.buttonActivities.resize(200,50)
         self.buttonActivities.move(350,5)
+
         #settings menu bar
         self.buttonSettings = QPushButton("SETTINGS", self)
         self.buttonSettings.setIcon(QIcon("settingico.ico"))
         self.buttonSettings.setIconSize(QSize(50,50))
         self.buttonSettings.resize(200,50)
         self.buttonSettings.move(550,5)
+        self.buttonSettings.clicked.connect(self.settingsPage)
+    
+    def profilePage(self):
+        self.buttonProfile.setStyleSheet("background-color:white;color:black;border-width:1px;border-style:outset;border-radius:5px;border-color:black;font:bold 12px")
+        #profile picture 
+        self.buttonUploadPic = QPushButton("", self)
+        self.buttonUploadPic.setIcon(QIcon("uploadImageico.ico"))
+        self.buttonUploadPic.setIconSize(QSize(100,100))
+        self.buttonUploadPic.resize(100,100)
+        self.buttonUploadPic.move(170,80)
+        self.buttonUploadPic2 = QPushButton("Upload image", self)
+        self.buttonUploadPic2.resize(100,25)
+        self.buttonUploadPic2.move(170,180)
+        self.buttonUploadPic.clicked.connect(self.uploadProfilePic)
+        self.buttonUploadPic2.clicked.connect(self.uploadProfilePic)
+        self.label = QLabel(self)
+        self.label.setGeometry(0,0,100,100)
+        self.label.move(170,80)
+        #profile details
+        self.prfName = QLabel(f"{self.name}", self)
+        self.prfName.resize(300,28)
+        self.prfName.move(300,88)
+        self.prfName.setStyleSheet("font-family:arial;font:bold;font-size:26px")
+        self.prfEmail = QLabel(f"{self.email}", self)
+        self.prfEmail.resize(300,17)
+        self.prfEmail.move(300,120)
+        self.prfEmail.setStyleSheet("font-family:arial;font-size:14px")
+        self.prfLocation = QLabel(f"{self.location}", self)
+        self.prfLocation.resize(300,17)
+        self.prfLocation.move(300,148)
+        self.prfLocation.setStyleSheet("font-family:arial;font-size:14px")
+
+    def settingsPage(self):
+        #not yet functioning (new window function)
+        self.initUI()
+        self.menuBar()
+        self.show()
+        self.buttonSettings.setStyleSheet("background-color:white;color:black;border-width:1px;border-style:outset;border-radius:5px;border-color:black;font:bold 12px")
+        self.settings = QLabel("Welcome to Settings", self)
+        self.settings.resize(300,10)
+        self.settings.move(300,300)
 
     def uploadProfilePic(self):
         self.image = QFileDialog.getOpenFileName(self,'Open File','c\\','image file(*.jpg)')
