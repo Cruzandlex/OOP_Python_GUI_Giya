@@ -4,34 +4,41 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 
+class Example(QWidget):
 
-class App(QMainWindow):
-
-    
     def __init__(self):
         super().__init__()
-        self.title="Supplementary Activity -CruzZ"
-        self.x=800 # or left
-        self.y=350 # or top
-        self.width=400
-        self.height=400
-        self.initUI()
-
+		self.initUI()
+	
     def initUI(self):
-        self.setGeometry(self.x,self.y,self.width,self.height)
-        vbox=QHBoxLayout
-    def Namespace(self):
-        self.GroupBox=QGroupBox("")
-        NameLocLoyal=QVBoxLayout()
-        Name=QLabel("Tour Guide Name0",self)
-        Name.setGeometry(QRect(100,100,150,50))
-        Name.setMinimumHeight(40)
-        NameLocLoyal.addWidget(Name)
+	
+        hbox = QHBoxLayout(self)
+            
+        topleft = QFrame()
+        topleft.setFrameShape(QFrame.StyledPanel)
+        bottom = QFrame()
+        bottom.setFrameShape(QFrame.StyledPanel)
+            
+        splitter1 = QSplitter(Qt.Horizontal)
+        textedit = QTextEdit()
+        splitter1.addWidget(topleft)
+        splitter1.addWidget(textedit)
+        splitter1.setSizes([100,200])
+            
+        splitter2 = QSplitter(Qt.Vertical)
+        splitter2.addWidget(splitter1)
+        splitter2.addWidget(bottom)
+            
+        hbox.addWidget(splitter2)
+            
+        self.setLayout(hbox)
+        QApplication.setStyle(QStyleFactory.create('Cleanlooks'))
+            
+        self.setGeometry(300, 300, 300, 200)
+        self.setWindowTitle('QSplitter demo')
         self.show()
-
-
-if __name__ == "__main__":
-
-    app = QApplication(sys.argv)
-    Mainwindow = App()
-    sys.exit(app.exec_())
+		
+if __name__ == '__main__':
+   app = QApplication(sys.argv)
+   ex = Example()
+   sys.exit(app.exec_())
