@@ -2,14 +2,8 @@ import sys
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
-from datetime import datetime
-import calendar
 
 class mainUserUI(QMainWindow):
-    global currentYear, currentMonth
-    currentMonth = datetime.now().month
-    currentYear = datetime.now().year
-
     def __init__(self):
         super().__init__()
         self.title = 'GIYA - Customers UI'
@@ -35,7 +29,7 @@ class mainUserUI(QMainWindow):
         self.button1.move(10,10)
         self.button1.resize(100,100)
         self.button1.setStyleSheet("background-color:transparent")
-        self.button1.clicked.connect(self.profilePage)
+        #self.button1.clicked.connect(self.profilePage)
         self.textbox1 = QLabel("PROFILE", self)
         self.textbox1.setStyleSheet("font-family:arial;font-weight:bold")
         self.textbox1.move(40,105)
@@ -47,7 +41,7 @@ class mainUserUI(QMainWindow):
         self.button2.move(11*3,10*15)
         self.button2.resize(50,50)
         self.button2.setStyleSheet("background-color:transparent")
-        self.button2.clicked.connect(self.homePage)
+        #self.button2.clicked.connect(self.homePage)
         self.textbox2 = QLabel("HOME", self)
         self.textbox2.setStyleSheet("font-family:arial;font-weight:bold")
         self.textbox2.move(45,100*2)
@@ -59,7 +53,7 @@ class mainUserUI(QMainWindow):
         self.button3.move(12*3,10*25)
         self.button3.resize(50,50)
         self.button3.setStyleSheet("background-color:transparent")
-        self.button3.clicked.connect(self.dashboardPage)
+        #self.button3.clicked.connect(self.dashboardPage)
         self.textbox3 = QLabel("DASHBOARD", self)
         self.textbox3.setStyleSheet("font-family:arial;font-weight:bold")
         self.textbox3.move(30,100*3)
@@ -71,7 +65,7 @@ class mainUserUI(QMainWindow):
         self.button4.move(12*3,10*35)
         self.button4.resize(50,50)
         self.button4.setStyleSheet("background-color:transparent")
-        self.button4.clicked.connect(self.aboutUsPage)
+        #self.button4.clicked.connect(self.aboutUsPage)
         self.textbox4 = QLabel("ABOUT US", self)
         self.textbox4.setStyleSheet("font-family:arial;font-weight:bold")
         self.textbox4.move(34,100*4)
@@ -83,26 +77,50 @@ class mainUserUI(QMainWindow):
         self.button5.move(12,10*55)
         self.button5.resize(90,30)
         self.button5.setStyleSheet("background-color:transparent")
-        self.button5.clicked.connect(self.signOut)
-        #Calendar for festivals
-        self.calendar = QCalendarWidget(self)
-        self.calendar.resize(600,500)
-        self.calendar.move(130,50)
+        #self.button5.clicked.connect(self.signOut)
 
-    def homePage(self):
-        print("home clicked.")
+        #users dashboard
+        #profile menu bar 
+        self.buttonProfile = QPushButton("PROFILE", self)
+        self.buttonProfile.setIcon(QIcon("profileDashico.ico"))
+        self.buttonProfile.setIconSize(QSize(50,50))
+        self.buttonProfile.resize(200,50)
+        self.buttonProfile.move(150,5)
+        self.buttonProfile.setStyleSheet("background-color:white;color:black;border-width:1px;border-style:outset;border-radius:5px;border-color:black;font:bold 12px")
+        #profile picture 
+        self.buttonUploadPic = QPushButton("", self)
+        self.buttonUploadPic.setIcon(QIcon("uploadImageico.ico"))
+        self.buttonUploadPic.setIconSize(QSize(100,100))
+        self.buttonUploadPic.resize(100,100)
+        self.buttonUploadPic2 = QPushButton("Upload image", self)
+        self.buttonUploadPic2.move(170,190)
+        self.buttonUploadPic.move(170,80)
+        self.buttonUploadPic.clicked.connect(self.uploadProfilePic)
+        self.buttonUploadPic2.clicked.connect(self.uploadProfilePic)
+        self.label = QLabel(self)
+        self.label.setGeometry(0,0,100,100)
+        self.label.move(170,80)
 
-    def profilePage(self):
-        print("profile clikced.")
+        #activities menu bar
+        self.buttonActivities = QPushButton("ACTIVITIES", self)
+        self.buttonActivities.setIcon(QIcon("activitiesico.ico"))
+        self.buttonActivities.setIconSize(QSize(35,35))
+        self.buttonActivities.resize(200,50)
+        self.buttonActivities.move(350,5)
+        #settings menu bar
+        self.buttonSettings = QPushButton("SETTINGS", self)
+        self.buttonSettings.setIcon(QIcon("settingico.ico"))
+        self.buttonSettings.setIconSize(QSize(50,50))
+        self.buttonSettings.resize(200,50)
+        self.buttonSettings.move(550,5)
 
-    def dashboardPage(self):
-        print("dashboard clicked.")
+    def uploadProfilePic(self):
+        self.image = QFileDialog.getOpenFileName(self,'Open File','c\\','image file(*.jpg)')
+        self.imagePath = self.image[0]
+        self.pixmap = QPixmap(self.imagePath)
+        self.label.setPixmap(QPixmap(self.pixmap))
+        self.label.setScaledContents(True)
 
-    def aboutUsPage(self):
-        print("about us clicked.")
-    
-    def signOut(self):
-        print("sign out.")
 
 #executes the application
 if __name__ == '__main__':
