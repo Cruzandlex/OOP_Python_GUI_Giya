@@ -13,20 +13,26 @@ class App(QMainWindow):
         self.y=100 # or top
         self.width=850
         self.height=650
+        self.LeftDashboardLayout()
         self.LeftDashboard()
         self.TourGuideUI()
         self.stylesheet= """
         QMainWindow{
-            background-color:#1C1F21;
+            background-color:rgba(142, 180, 29, 0.22);
+        }
+        QPushButton#LDashBoard{
         }
         QLabel#Texts{
-        color:#E9ED68;background-color:#000000;
+        color:#DADE0D;background-color:#000000;
         padding-left:5px;
         font-size: 20px;
         }
         """
         self.setStyleSheet(self.stylesheet)
         self.show()
+        #        redb = QPushButton('Red', self)
+        #redb.setCheckable(True)
+        #redb.move(10, 10)
     def TourGuideUI(self):
         self.UserSide()
         self.RatingSide()
@@ -35,7 +41,7 @@ class App(QMainWindow):
         self.setWindowTitle("TOUR GUIDE UI")
         self.setGeometry(self.x,self.y,self.width,self.height)
         self.Icon=QLabel(self)
-        pixmap=QPixmap('BlankIcon.ico')
+        pixmap=QPixmap('OOP_Python_GUI_Giya\BlankIcon.ico')
         self.Icon.setPixmap(pixmap)
         self.Icon.setGeometry(150,100,400,150)
         self.Icon.setStyleSheet("""
@@ -63,6 +69,7 @@ class App(QMainWindow):
         self.button1.resize(100,100)
         self.button1.setStyleSheet("background-color:transparent")
         self.button1.clicked.connect(self.profilePage)
+        self.button1.setObjectName("LDashBoard")
         self.textbox1 = QLabel("PROFILE", self)
         self.textbox1.setStyleSheet("font-family:arial;font-weight:bold")
         self.textbox1.move(40,105)
@@ -71,10 +78,12 @@ class App(QMainWindow):
         self.button2.setIcon(QIcon("homeico.ico"))
         self.button2.setToolTip("Go to HOME page.")
         self.button2.setIconSize(QSize(50,50))
+        
         self.button2.move(11*3,10*15)
         self.button2.resize(50,50)
         self.button2.setStyleSheet("background-color:transparent")
         self.button2.clicked.connect(self.homePage)
+        self.button2.setObjectName("LDashBoard")
         self.textbox2 = QLabel("HOME", self)
         self.textbox2.setStyleSheet("font-family:arial;font-weight:bold")
         self.textbox2.move(45,100*2)
@@ -87,6 +96,7 @@ class App(QMainWindow):
         self.button3.resize(50,50)
         self.button3.setStyleSheet("background-color:transparent")
         self.button3.clicked.connect(self.dashboardPage)
+        self.button3.setObjectName("LDashBoard")
         self.textbox3 = QLabel("DASHBOARD", self)
         self.textbox3.setStyleSheet("font-family:arial;font-weight:bold")
         self.textbox3.move(30,100*3)
@@ -99,6 +109,7 @@ class App(QMainWindow):
         self.button4.resize(50,50)
         self.button4.setStyleSheet("background-color:transparent")
         self.button4.clicked.connect(self.aboutUsPage)
+        self.button4.setObjectName("LDashBoard")
         self.textbox4 = QLabel("ABOUT US", self)
         self.textbox4.setStyleSheet("font-family:arial;font-weight:bold")
         self.textbox4.move(34,100*4)
@@ -111,8 +122,23 @@ class App(QMainWindow):
         self.button5.resize(90,30)
         self.button5.setStyleSheet("background-color:transparent")
         self.button5.clicked.connect(self.signOut)
-
-    
+        self.button5.setObjectName("LDashBoard")
+    def LeftDashboardLayout(self):
+        #Dashboard Design
+        self.DBBackground=QLabel("",self)
+        self.DBBackground.setGeometry(0,0,126,650)
+        self.DBBackground.setStyleSheet("""
+        background: #FFFFFF
+        """)
+        self.Lining=QLabel("",self)
+        self.Lining.setGeometry(121,0,5,650)
+        self.Lining.setStyleSheet("""
+        border-radius: 25px;
+        border: 5px solid #E9ED68;
+        """)
+    def TopDashBoardLayout(self):
+        pass
+        
 
     #@pyqtSlot()
     def homePage(self):
