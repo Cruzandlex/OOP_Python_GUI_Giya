@@ -43,7 +43,7 @@ class mainUserUI(QWidget):
         self.lineTaskbar.setGeometry(100,60,1280,2)
         self.backgroudBar = QLabel(self)
         self.backgroudBar.setStyleSheet("background-color:#f1f2f4;border: 1px outset #c6cad2")
-        self.backgroudBar.setGeometry(100,0,1005,60)
+        self.backgroudBar.setGeometry(100,0,1100,60)
         self.logo = QLabel(self)
         self.logo.resize(50,50)
         self.logo.move(22,5)
@@ -115,20 +115,15 @@ class mainUserUI(QWidget):
         self.buttonPic = QPushButton("", self)
         self.buttonPic.setIcon(QIcon("uploadImageico.ico"))
         self.buttonPic.setIconSize(QSize(70,50))
-        self.buttonPic.setGeometry(1105,0,70,60)
+        self.buttonPic.setGeometry(1200,0,70,60)
         #self.buttonPic.setStyleSheet("background-color:transparent")
         self.label = QLabel(self)
-        self.label.setGeometry(1105,0,70,60)
+        self.label.setGeometry(1200,0,70,60)
         self.textboxUsername = QLabel(f"{self.username}", self)
-        self.textboxUsername.move(1180,30)
+        self.textboxUsername.move(1110,30)
         self.textboxUsername.setStyleSheet("font-family:arial;font-weight:bold;font-size:14px")
         self.textboxUsername1 = QLabel("Welcome to GIYA,", self)
-        self.textboxUsername1.move(1180,10)
-        self.messageButton = QPushButton("", self)
-        self.messageButton.setIcon(QIcon("message.png"))
-        self.messageButton.setIconSize(QSize(40,40))
-        self.messageButton.setGeometry(1140,5,50,50)
-        self.messageButton.setStyleSheet("background-color:transparent")
+        self.textboxUsername1.move(1110,10)
 
     def profilePage(self):
         #profile picture 
@@ -157,6 +152,10 @@ class mainUserUI(QWidget):
         self.prfLocation.resize(300,17)
         self.prfLocation.move(290,158)
         self.prfLocation.setStyleSheet("font-family:arial;font-size:14px")
+        #Recent Activities
+        self.dashActivities = QLabel(self)
+        self.dashActivities.setStyleSheet("background-color:#494F5B;border: 0px 1px 0px 0px outset #666e7f")
+        self.dashActivities.setGeometry(140,250,400,200)
 
     def settingsPage(self):
         #not yet functioning (new window function)
