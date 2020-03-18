@@ -7,19 +7,21 @@ class mainUserUI(QWidget):
     def __init__(self):
         super().__init__()
         self.title = 'GIYA - Customers UI'
-        self.x = 0
-        self.y = 0
+        self.x = 50
+        self.y = 40
         self.width = 1270
         self.height = 680
         self.Icon = "appLogoico.png"
         self.setWindowTitle(self.title)
         self.setGeometry(self.x, self.y, self.width, self.height)
         self.setWindowIcon(QIcon(self.Icon))
+        self.imagePath = ""
 
         #profile details
         self.name = "Ivan Norvy Guzman"
         self.email = "qinbguzman@tip.edu.ph"
         self.location = "Marikina City, Metro Manila, Philippines"
+        self.username = "qinbguzman"
 
         self.initUI()
         self.menuBar()
@@ -41,7 +43,7 @@ class mainUserUI(QWidget):
         self.lineTaskbar.setGeometry(100,60,1280,2)
         self.backgroudBar = QLabel(self)
         self.backgroudBar.setStyleSheet("background-color:#f1f2f4;border: 1px outset #c6cad2")
-        self.backgroudBar.setGeometry(100,0,1100,60)
+        self.backgroudBar.setGeometry(100,0,1005,60)
         self.logo = QLabel(self)
         self.logo.resize(50,50)
         self.logo.move(22,5)
@@ -50,40 +52,50 @@ class mainUserUI(QWidget):
         self.logo.setScaledContents(True)
         #Taskbar Buttons
         #Dashboard Page
-        self.button3 = QPushButton("", self)
-        self.button3.setIcon(QIcon("dashboardico.ico"))
-        self.button3.setToolTip("Go to your DASHBOARD.")
-        self.button3.setIconSize(QSize(50,50))
-        self.button3.setGeometry(18,90,60,60)
-        self.button3.setStyleSheet("background-color:transparent")
+        self.button1 = QPushButton("", self)
+        self.button1.setIcon(QIcon("dashboardico.png"))
+        self.button1.setToolTip("Go to your DASHBOARD.")
+        self.button1.setIconSize(QSize(60,60))
+        self.button1.setGeometry(14,90,70,70)
+        self.button1.setStyleSheet("background-color:transparent")
         #self.button3.clicked.connect(self.dashboardPage)
-        self.textbox3 = QLabel("DASHBOARD", self)
-        self.textbox3.setStyleSheet("font-family:arial;font-weight:bold;color:#F5F5F5")
-        self.textbox3.move(16,160)
-        #settings menu bar
-        self.buttonSettings = QPushButton("", self)
-        self.buttonSettings.setIcon(QIcon("settingico.ico"))
-        self.buttonSettings.setIconSize(QSize(70,70))
-        self.buttonSettings.setGeometry(15,190,70,70)
-        self.buttonSettings.clicked.connect(self.settingsPage)
-        self.buttonSettings.setStyleSheet("background-color:transparent")
-        self.textbox3 = QLabel("SETTINGS", self)
-        self.textbox3.setStyleSheet("font-family:arial;font-weight:bold;color:#F5F5F5")
-        self.textbox3.move(22,265)
+        self.textbox1 = QLabel("DASHBOARD", self)
+        self.textbox1.setStyleSheet("font-family:arial;font-weight:bold;color:#F5F5F5")
+        self.textbox1.move(16,160)
         #About Us Page
-        self.button4 = QPushButton("", self)
-        self.button4.setIcon(QIcon("aboutUsico.ico"))
-        self.button4.setToolTip("Know About Us.")
-        self.button4.setIconSize(QSize(45,45))
-        self.button4.setGeometry(25,340,50,50)
-        self.button4.setStyleSheet("background-color:transparent")
+        self.button2 = QPushButton("", self)
+        self.button2.setIcon(QIcon("aboutUsico.png"))
+        self.button2.setToolTip("Know About Us.")
+        self.button2.setIconSize(QSize(45,45))
+        self.button2.setGeometry(25,500,50,50)
+        self.button2.setStyleSheet("background-color:transparent")
         #self.button4.clicked.connect(self.aboutUsPage)
-        self.textbox4 = QLabel("ABOUT US", self)
-        self.textbox4.setStyleSheet("font-family:arial;font-weight:bold;color:white")
-        self.textbox4.move(22,400)
+        self.textbox2 = QLabel("ABOUT US", self)
+        self.textbox2.setStyleSheet("font-family:arial;font-weight:bold;color:white")
+        self.textbox2.move(22,560)
+        #Profile
+        self.button3 = QPushButton("", self)
+        self.button3.setIcon(QIcon("profilePageico.png"))
+        self.button3.setToolTip("Go to your Profile")
+        self.button3.setIconSize(QSize(70,70))
+        self.button3.setGeometry(10,195,80,80)
+        self.button3.setStyleSheet("background-color:transparent")
+        self.textbox3 = QLabel("PROFILE", self)
+        self.textbox3.setStyleSheet("font-family:arial;font-weight:bold;color:white")
+        self.textbox3.move(27,275)
+        #History Events
+        self.button4 = QPushButton("", self)
+        self.button4.setIcon(QIcon("historyEvents.png"))
+        self.button4.setToolTip("Go to your Profile")
+        self.button4.setIconSize(QSize(50,50))
+        self.button4.setGeometry(20,315,60,60)
+        self.button4.setStyleSheet("background-color:transparent")
+        self.textbox3 = QLabel("ACTIVITIES", self)
+        self.textbox3.setStyleSheet("font-family:arial;font-weight:bold;color:white")
+        self.textbox3.move(20,380)
         #Sign Out 
         self.button5 = QPushButton("SIGN OUT", self)
-        self.button5.setIcon(QIcon("signOutico.ico"))
+        self.button5.setIcon(QIcon("signOutico.png"))
         self.button5.setToolTip("Sign Out.")
         self.button5.setIconSize(QSize(30,30))
         self.button5.move(3,620)
@@ -100,12 +112,18 @@ class mainUserUI(QWidget):
         self.taskBarButton.setIconSize(QSize(30,30))
         self.taskBarButton.setGeometry(270,12,40,40)
         self.taskBarButton.setStyleSheet("background-color:transparent")
-        self.styleChoice = QLabel("Window")
-        self.buttonUploadPic = QPushButton("", self)
-        self.buttonUploadPic.setIcon(QIcon("uploadImageico.ico"))
-        self.buttonUploadPic.setIconSize(QSize(70,50))
-        self.buttonUploadPic.setGeometry(1200,0,70,60)
-        self.buttonUploadPic.setStyleSheet("background-color:transparent")
+        self.buttonPic = QPushButton("", self)
+        self.buttonPic.setIcon(QIcon("uploadImageico.ico"))
+        self.buttonPic.setIconSize(QSize(70,50))
+        self.buttonPic.setGeometry(1105,0,70,60)
+        #self.buttonPic.setStyleSheet("background-color:transparent")
+        self.label = QLabel(self)
+        self.label.setGeometry(1105,0,70,60)
+        self.textboxUsername = QLabel(f"{self.username}", self)
+        self.textboxUsername.move(1180,30)
+        self.textboxUsername.setStyleSheet("font-family:arial;font-weight:bold;font-size:14px")
+        self.textboxUsername1 = QLabel("Welcome to GIYA,", self)
+        self.textboxUsername1.move(1180,10)
         self.messageButton = QPushButton("", self)
         self.messageButton.setIcon(QIcon("message.png"))
         self.messageButton.setIconSize(QSize(40,40))
