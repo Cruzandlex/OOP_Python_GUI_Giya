@@ -134,10 +134,10 @@ print(len(tourist_data))
 tourGuide_data = tourGuide_accounts_db.get("tourGuide_data", [])
 print(len(tourGuide_data))
 
+add_record_tourGuide()
 print(tourist_data[0]["username"])
 print(tourist_data[0]["password"])
-print(tourGuide_data[0]["username"])
-print(tourGuide_data[0]["password"])
+
 
 print(len(tourist_data))
 print(len(tourGuide_data))

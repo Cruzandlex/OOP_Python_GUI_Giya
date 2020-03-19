@@ -4,14 +4,9 @@ from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 from sqlitedict import *
 from datetime import *
-import sip
 
-sip.setapi('QString', 2)
-sip.setapi('QVariant', 2)
-
-class Login(QWidget):
+class Signup(QWidget):
     
-
     def __init__(self):
         super().__init__()
         self.tourist_accounts_db = SqliteDict("giya_accounts_tourist.db", autocommit=True)
@@ -22,8 +17,7 @@ class Login(QWidget):
     def loginWindow(self):
         #Fixed Window Size Setup
         self.setFixedSize(300, 500)
-        self.setWindowTitle("Giya Login")
-        #self.setStyleSheet(login_stylesheet)
+        self.setWindowTitle("Giya Signup")
         
         #Signup Form
         labels = ["First Name", "Last Name", "Age", "Email", "Contact No.", "Username", "Password"]
@@ -55,7 +49,6 @@ class Login(QWidget):
 
     def signup(self):
         temp_db = self.tourist_accounts_db.get("tourist_data", [])
-        indicator = True
         temp_data = {"name":"", "age":"", "email":"", "contact no":"", "username":"", "password":"", "history":[], "event":None, "date started":""}
         temp_data["name"] = self.textboxSlots[0].text() + " " + self.textboxSlots[1].text()
         temp_data["age"] = self.textboxSlots[2].text()
@@ -65,11 +58,16 @@ class Login(QWidget):
         temp_data["password"] = self.textboxSlots[6].text()
         temp_data["date started"] = date.today()
         temp_db.append(temp_data)
-        self.tourist_accounts_db = temp_db
+        self.tourist_accounts_db["tourist_data"] = temp_db
+        self.hide()
+        if self.isHidden():
+            self.close()
+            
+            
 
-        
+"""      
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     ex = Login()
     sys.exit(app.exec_())
-
+"""
