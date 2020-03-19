@@ -17,14 +17,14 @@ class TourGuideUI(QWidget):
         self.setFixedSize
         self.setWindowIcon(QIcon(self.Icon))
         self.imagePath = ""
-
+        self.userData={"username":"Erickson","password":"Admin","role":"TG","msg": ["hello",'hi'],"pending":[],"acc":{"name":"Zandlex Keano M. Cruz","age":"19","sex":
+        "Male","EmailAd":"Qzkmcruz@tip.edu.ph","started":"November 26, 2000","FavoriteLoc":"Region V","TotalTours":"0","contact":"09560594126","aboutme":
+        "I have no bio data yet to show the people"}}
         #profile details
         self.name = "Ivan Norvy Guzman"
         self.email = "qinbguzman@tip.edu.ph"
         self.location = "Marikina City, Metro Manila, Philippines"
         self.username = "qinbguzman"
-        
-        
         self.initUI()
 
     def initUI(self):
@@ -165,12 +165,16 @@ class TourGuideUI(QWidget):
         self.BioHeader=QLabel("About Me",self)
         self.BioHeader.setGeometry(140,255,420,60)
         self.BioHeader.setStyleSheet("""color:#000000;font-family: Arial; font-size: 20px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 15px;
-                                              padding-left:160px;color:#000000;background-color:Transparent;
+                                              padding-left:80px;color:#000000;background-color:Transparent;
                                               border: 2px solid #494F5B;border-width:0px 0px 2px 0px;""")
-        self.BioText=QLabel("You can edit this text.",self)
+        self.BioText=QLabel(self.userData['acc']['aboutme'],self)
         self.BioText.setWordWrap(True)
         self.BioText.setGeometry(150,330,380,290)
-        self.BioText.setStyleSheet("background-color:transparent")
+        self.BioText.setStyleSheet("background-color:transparent;font-size:20px;")
+        self.EditBio=QPushButton("EDIT NOTE",self)
+        self.EditBio.setGeometry(430,265,80,30)
+        self.TGButtons=(""" background-color:#747D90  """)
+        self.EditBio.setStyleSheet(self.TGButtons)
 #----------------------------Right Portion-----------------------------------------------------------
         self.RightPartLayout=QLabel(self)
         self.RightPartLayout.setGeometry(600,62,700,700)
@@ -184,8 +188,8 @@ class TourGuideUI(QWidget):
         self.BiodataLogo.setGeometry(645,200,50,50)
         self.BiodataHeader=QLabel(self.name.upper()+"'s "+"Bio data",self)
         self.BiodataHeader.setGeometry(637,200,600,60)
-        self.BiodataHeader.setStyleSheet("""color:#000000;font-family: Arial; font-size: 20px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 15px;
-                                              padding-left:130px;color:#000000;background-color:Transparent;
+        self.BiodataHeader.setStyleSheet("""color:#000000;font-family: Arial; font-size: 20px; font-style: normal; font-variant: normal; font-weight: 500; line-height: 15px;
+                                              padding-left:100px;color:#000000;background-color:Transparent;
                                               border: 2px solid #494F5B;border-width:0px 0px 2px 0px;""")
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>     
@@ -198,7 +202,7 @@ class TourGuideUI(QWidget):
         self.RatingLogo.setScaledContents(True)
         self.RatingsHeader=QLabel("Ratings: ",self)
         self.RatingsHeader.setGeometry(685,85,100,35)
-        self.RatingsHeader.setStyleSheet("Font-size:22px;font-family:Arial;")
+        self.RatingsHeader.setStyleSheet("Font-size:22px;font-family:Arial;font-weight:600")
         self.StarBlack=QPixmap("StarBlack.png")
         self.StarYellow=QPixmap("StarYellow2.png")
         self.Rating1=QLabel(self)
@@ -231,7 +235,7 @@ class TourGuideUI(QWidget):
         self.DateStartLogo.setScaledContents(True)
         self.DateStartHeader=QLabel("Date started:",self)
         self.DateStartHeader.setGeometry(685,138,160,50)
-        self.DateStartHeader.setStyleSheet("Font-size:22px;font-family:Arial;")
+        self.DateStartHeader.setStyleSheet("Font-size:22px;font-family:Arial;font-weight:600;")
         self.DateStartText=QLabel("November 26, 2000",self)
         self.DateStartText.setGeometry(835,138,200,50)
         self.DateStartText.setStyleSheet("Font-size:22px;font-family:Arial;")
@@ -240,13 +244,63 @@ class TourGuideUI(QWidget):
         self.LocBox.setGeometry(1070,80,165,108)
         self.LocBox.setStyleSheet("background-color:#FFFFFF;")
         self.LocLogo=QLabel(self)
-        self.LocLogo.setGeometry(1070,95,80,80)
+        self.LocLogo.setGeometry(1070,105,80,80)
         self.LocLogo.setPixmap(QPixmap("PhilLandmark.ico"))
         self.LocLogo.setScaledContents(True)
         self.LocText=QLabel("Region\n     V",self)
-        self.LocText.setStyleSheet("Font-size:22px;font-family:Arial;")
-        self.LocText.setGeometry(1150,85,100,100)
+        self.LocText.setStyleSheet("""Font-size:22px;font-family:Arial; font-style: normal; font-variant: normal; font-weight: 400; line-height: 15px;
+                                                color:#000000;background-color:Transparent;""")
+        self.LocText.setGeometry(1148,100,100,100)
+        self.LocHeader=QLabel("Local Region",self)
+        self.LocHeader.setGeometry(1100,79,130,30)
+        self.LocHeader.setStyleSheet("""Font-size:17px;font-family:Arial; font-style: normal; font-variant: normal; font-weight: 400; line-height: 15px;
+                                                color:#6E7F8C;background-color:Transparent;""")
 #----------------------------------------------------------------------------------------------------
+#----------------PROFILE INFORMATION-----------------------------------------------------------------
+        self.Profilestyle=("""Font-size:17px;font-family:Arial; font-style: normal; font-variant: normal; font-weight: 700; line-height: 15px;
+                                                color:#000000;background-color:Transparent;   """)
+        self.Subprofilestyle=(""" Font-size:17px;font-family:Arial; font-style: normal; font-variant: normal; font-weight: 400; line-height: 15px;
+                                                color:#000000;background-color:Transparent;  """)
+        self.FullNameL=QLabel("Name: ",self)
+        self.FullNameL.setGeometry(670,270,400,50)
+        self.FullNameL.setStyleSheet(self.Profilestyle)
+        self.FullNameT=QLabel(self.userData['acc']['name'],self)
+        self.FullNameT.setGeometry(750,270,400,50)
+        self.FullNameT.setStyleSheet(self.Subprofilestyle)
+
+        self.AgeL=QLabel("Age: ",self)
+        self.AgeL.setGeometry(670,340,400,50)
+        self.AgeL.setStyleSheet(self.Profilestyle)
+        self.AgeT=QLabel(self.userData['acc']['age'],self)
+        self.AgeT.setGeometry(730,340,400,50)
+        self.AgeT.setStyleSheet(self.Subprofilestyle)
+
+        self.SexL=QLabel("Sex: ",self)
+        self.SexL.setGeometry(670,410,400,50)
+        self.SexL.setStyleSheet(self.Profilestyle)
+        self.SexT=QLabel(self.userData['acc']['sex'],self)
+        self.SexT.setGeometry(730,410,400,50)
+        self.SexT.setStyleSheet(self.Subprofilestyle)
+
+        self.EmailL=QLabel("Email address: ",self)
+        self.EmailL.setGeometry(670,480,400,50)
+        self.EmailL.setStyleSheet(self.Profilestyle)
+        self.EmailT=QLabel(self.userData['acc']['EmailAd'],self)
+        self.EmailT.setGeometry(820,480,400,50)
+        self.EmailT.setStyleSheet(self.Subprofilestyle)
+
+        self.ContactL=QLabel("Contact number: ",self)
+        self.ContactL.setGeometry(670,550,400,50)
+        self.ContactL.setStyleSheet(self.Profilestyle)
+        self.EmailT=QLabel(self.userData['acc']['contact'],self)
+        self.EmailT.setGeometry(840,550,400,50)
+        self.EmailT.setStyleSheet(self.Subprofilestyle)
+
+
+        self.EditProfile=QPushButton("EDIT PROFILE",self)
+        self.EditProfile.setGeometry(1100,210,120,40)
+        self.EditProfile.setStyleSheet(self.TGButtons)
+#-----------------------------------------------------------------------------------------------------
 
 
     def settingsPage(self):
