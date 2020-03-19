@@ -2,6 +2,7 @@ import sys
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
+from BookPopUp import BookPopUp
 
 class mainUserUI(QWidget):
     def __init__(self):
@@ -13,7 +14,8 @@ class mainUserUI(QWidget):
         self.height = 680
         self.Icon = "appLogoico.png"
         self.setWindowTitle(self.title)
-        self.setGeometry(self.x, self.y, self.width, self.height)
+        #self.setGeometry(self.x, self.y, self.width, self.height)
+        self.setGeometry(self.x,self.y,self.width,self.height)
         self.setWindowIcon(QIcon(self.Icon))
         self.imagePath = ""
 
@@ -27,6 +29,12 @@ class mainUserUI(QWidget):
         self.favoriteLocation = "REGION IV"
         self.membershipTier = "bronzeTier.png"
         self.tier = "BRONZE TIER"
+        self.currentFestivalImg = "malasimbof.jpg"
+        self.currentFestName = "Malasimbo Festival"
+        self.currentFestLoc = "Puerto Galera"
+        self.currentFestDate = "March 10-12 | 8:00 PM"
+        self.currentTourGuideName = "Name of Tourguide"
+        self.currentTourGuideLocale = "Locale of Tourguide"
 
         self.initUI()
         self.menuBar() 
@@ -55,6 +63,7 @@ class mainUserUI(QWidget):
         self.pixmap = QPixmap(self.Icon)
         self.logo.setPixmap(QPixmap(self.pixmap))
         self.logo.setScaledContents(True)
+
         #Taskbar Buttons
         #Dashboard Page
         self.button1 = QPushButton("", self)
@@ -67,6 +76,7 @@ class mainUserUI(QWidget):
         self.textbox1 = QLabel("DASHBOARD", self)
         self.textbox1.setStyleSheet("font-family:arial;font-weight:bold;color:#F5F5F5")
         self.textbox1.move(16,160)
+
         #About Us Page
         self.button2 = QPushButton("", self)
         self.button2.setIcon(QIcon("aboutUsico.png"))
@@ -78,6 +88,7 @@ class mainUserUI(QWidget):
         self.textbox2 = QLabel("ABOUT US", self)
         self.textbox2.setStyleSheet("font-family:arial;font-weight:bold;color:white")
         self.textbox2.move(22,560)
+
         #Profile
         self.button3 = QPushButton("", self)
         self.button3.setIcon(QIcon("profilePageico.png"))
@@ -88,6 +99,7 @@ class mainUserUI(QWidget):
         self.textbox3 = QLabel("PROFILE", self)
         self.textbox3.setStyleSheet("font-family:arial;font-weight:bold;color:white")
         self.textbox3.move(27,275)
+
         #History Events
         self.button4 = QPushButton("", self)
         self.button4.setIcon(QIcon("historyEvents.png"))
@@ -98,6 +110,7 @@ class mainUserUI(QWidget):
         self.textbox3 = QLabel("ACTIVITIES", self)
         self.textbox3.setStyleSheet("font-family:arial;font-weight:bold;color:white")
         self.textbox3.move(20,380)
+
         #Sign Out 
         self.button5 = QPushButton("SIGN OUT", self)
         self.button5.setIcon(QIcon("signOutico.png"))
@@ -129,6 +142,16 @@ class mainUserUI(QWidget):
         self.textboxUsername.setStyleSheet("font-family:arial;font-weight:bold;font-size:14px")
         self.textboxUsername1 = QLabel("Welcome to GIYA,", self)
         self.textboxUsername1.move(1110,10)
+        self.messageButton = QPushButton(self)
+        self.messageButton.setIcon(QIcon("messageMenu.png"))
+        self.messageButton.setIconSize(QSize(55,55))
+        self.messageButton.setGeometry(1040,3,55,55)
+        self.messageButton.setStyleSheet("background-color:transparent")
+        self.notifButon = QPushButton(self)
+        self.notifButon.setIcon(QIcon("notificationMenu.png"))
+        self.notifButon.setIconSize(QSize(55,55))
+        self.notifButon.setGeometry(990,2,55,55)
+        self.notifButon.setStyleSheet("background-color:transparent")
 
     def dashboardPage(self):
         #profile picture 
@@ -146,6 +169,7 @@ class mainUserUI(QWidget):
         '''
         self.label = QLabel(self)
         self.label.setGeometry(130,80,140,140)
+
         #profile details
         self.prfName = QLabel(f"{self.name}", self)
         self.prfName.resize(300,28)
@@ -163,6 +187,7 @@ class mainUserUI(QWidget):
         self.prfBio.setGeometry(290,150,380,80)
         self.prfBio.setStyleSheet("font-family:arial;font-size:14px;text-align")
         self.prfBio.setWordWrap(True)
+
         #recent Activities
         self.dashActivities = QLabel(self)
         self.dashActivities.setStyleSheet("background-color:#F8F8FF;border-style:outset;border-width:1px;border-color:#DCDCDC;border-radius:20px")
@@ -178,6 +203,33 @@ class mainUserUI(QWidget):
         self.dashActText.move(180,268)
         self.dashActText.setStyleSheet("font-family:Arial;font-weight:bold;font-size:16px")
 
+        self.imageFest = QLabel(self)
+        self.imageFest.setStyleSheet("background-color:#F8F8FF;border-style:outset;border-width:1px;border-color:#DCDCDC;border-radius:20px")
+        self.imageFest.setGeometry(425,310,230,135)
+        self.imageFest.setPixmap(QPixmap(self.currentFestivalImg))
+        self.imageFest.setScaledContents(True)
+        self.nameOfFestIcon = QLabel(self)
+        self.nameOfFestIcon.setGeometry(130,310,40,40)
+        self.nameOfFestIcon.setPixmap(QPixmap("festivalName.png"))
+        self.nameOfFestIcon.setScaledContents(True)
+        self.nameOfFest = QLabel(f"{self.currentFestName}", self)
+        self.nameOfFest.setGeometry(180,320,200,20)
+        self.nameOfFest.setStyleSheet("font-family:Arial;font-weight:bold;font-size:16px")
+        self.locOfFestIcom = QLabel(self)
+        self.locOfFestIcom.setGeometry(130,355,40,40)
+        self.locOfFestIcom.setPixmap(QPixmap("festivalLoc.png"))
+        self.locOfFestIcom.setScaledContents(True)
+        self.locOfFest = QLabel(f"{self.currentFestLoc}", self)
+        self.locOfFest.setGeometry(180,365,200,20)
+        self.locOfFest.setStyleSheet("font-family:Arial;font-weight:bold;font-size:16px")
+        self.dateOfFestIcon = QLabel(self)
+        self.dateOfFestIcon.setGeometry(130,400,40,40)
+        self.dateOfFestIcon.setPixmap(QPixmap("festivalDate.png"))
+        self.dateOfFestIcon.setScaledContents(True)
+        self.dateOfFest = QLabel(f"{self.currentFestDate}", self)
+        self.dateOfFest.setGeometry(180,410,200,20)
+        self.dateOfFest.setStyleSheet("font-family:Arial;font-weight:bold;font-size:16px")
+
         self.dashActivities2 = QLabel(self)
         self.dashActivities2.setStyleSheet("background-color:#F8F8FF;border-style:outset;border-width:1px;border-color:#DCDCDC;border-radius:20px")
         self.dashActivities2.setGeometry(120,470,550,200)
@@ -191,6 +243,44 @@ class mainUserUI(QWidget):
         self.dashActText2 = QLabel("Your Tourguide", self)
         self.dashActText2.move(185,490)
         self.dashActText2.setStyleSheet("font-family:Arial;font-weight:bold;font-size:16px")
+
+        self.tourGImage = QLabel(self)
+        self.tourGImage.setStyleSheet("background-color:#F8F8FF;border-style:solid;border-width:3px;border-color:#DCDCDC")
+        self.tourGImage.setGeometry(135,535,125,125)
+        self.tourGImage.setPixmap(QPixmap("tourGprofile.png"))
+        self.tourGImage.setScaledContents(True)
+        self.tourGname = QLabel(f"{self.currentTourGuideName}", self)
+        self.tourGname.setGeometry(280,550,200,20)
+        self.tourGname.setStyleSheet("font-family:Arial;font-weight:bold;font-size:16px")
+        self.tourGlocale = QLabel(f"{self.currentTourGuideLocale}", self)
+        self.tourGlocale.setGeometry(280,580,220,20)
+        self.tourGlocale.setStyleSheet("font-family:Arial;font-weight:bold;font-size:16px")
+        self.tourGratings = QLabel("RATINGS:", self)
+        self.tourGratings.setGeometry(280,620,220,20)
+        self.tourGratings.setStyleSheet("font-family:Arial;font-weight:bold;font-size:16px")
+        self.StarBlack = QPixmap("StarBlack.png")
+        self.StarYellow = QPixmap("StarYellow.png")
+        self.Rating1 = QLabel(self) 
+        self.Rating1.setScaledContents(True)
+        self.Rating1.setGeometry(363,612,35,35)
+        self.Rating1.setPixmap(self.StarYellow)
+        self.Rating2 = QLabel(self)
+        self.Rating2.setScaledContents(True)
+        self.Rating2.setGeometry(403,612,35,35)
+        self.Rating2.setPixmap(self.StarYellow)
+        self.Rating3 = QLabel(self)
+        self.Rating3.setScaledContents(True)
+        self.Rating3.setGeometry(443,612,35,35)
+        self.Rating3.setPixmap(self.StarYellow)
+        self.Rating4 = QLabel(self)
+        self.Rating4.setScaledContents(True)
+        self.Rating4.setGeometry(483,612,35,35)
+        self.Rating4.setPixmap(self.StarYellow)
+        self.Rating5 = QLabel(self)
+        self.Rating5.setScaledContents(True)
+        self.Rating5.setGeometry(524,612,35,35)
+        self.Rating5.setPixmap(self.StarBlack)
+
         #festival of the Month
         self.dashFestival = QLabel(self)
         self.dashFestival.setStyleSheet("background-color:#F8F8FF;border-style:outset;border-width:1px;border-color:#DCDCDC;border-radius:20px")
@@ -214,36 +304,63 @@ class mainUserUI(QWidget):
         self.calendarTable.setColumnWidth(2,170)
         for i in range(10):
             self.calendarTable.setRowHeight(i,50)
-        self.calendarTable.setItem(0,0, QTableWidgetItem("DATE/VENUE"))
-        self.calendarTable.item(0,0).setTextAlignment(Qt.AlignCenter)
-        self.calendarTable.setItem(0,1, QTableWidgetItem("FESTIVAL"))
-        self.calendarTable.item(0,1).setTextAlignment(Qt.AlignCenter)
-        self.calendarTable.setItem(0,2, QTableWidgetItem(""))
-        self.calendarTable.setItem(1,0, QTableWidgetItem("March 10-12     Puerto Galera"))
-        self.calendarTable.setItem(1,1, QTableWidgetItem("Malasimbo Festival"))
-        self.calendarTable.setItem(2,0, QTableWidgetItem("March 21 - 27"))
-        self.calendarTable.setItem(2,1, QTableWidgetItem("UNESCO-ITI World Theater Week"))
-        self.calendarTable.setItem(3,0, QTableWidgetItem("First Week of March"))
-        self.calendarTable.setItem(3,1, QTableWidgetItem("Island Garden City of Samal Festival"))
-        self.calendarTable.setItem(4,0, QTableWidgetItem("March 8 Compostela Valley Province"))
-        self.calendarTable.setItem(4,1, QTableWidgetItem("Anibina Bulawanun Festival"))
-        self.calendarTable.setItem(5,0, QTableWidgetItem("March-April"))
-        self.calendarTable.setItem(5,1, QTableWidgetItem("Holy Week"))
-        self.calendarTable.setItem(6,0, QTableWidgetItem("Holy Week Marinduque"))
-        self.calendarTable.setItem(6,1, QTableWidgetItem("Moriones Festival"))
-        self.calendarTable.setItem(7,0, QTableWidgetItem("Holy Week General Luna, Quezon"))
-        self.calendarTable.setItem(7,1, QTableWidgetItem("Centurion Festival"))
-        self.calendarTable.setItem(8,0, QTableWidgetItem("Good Friday Jordan, Guimaras"))
-        self.calendarTable.setItem(8,1, QTableWidgetItem("Ang Pagtaltal"))
-        self.calendarTable.setItem(9,0, QTableWidgetItem("Good Friday Nueva Valencia"))
-        self.calendarTable.setItem(9,1, QTableWidgetItem("Pangalap Ritual"))
-        self.calendarTable.setItem(10,0, QTableWidgetItem("Holy Week Siquijor"))
-        self.calendarTable.setItem(10,1, QTableWidgetItem("Witches Festival"))
-        self.calendarTable.setGeometry(700,307,550,365)
-        self.calendarTable.setStyleSheet("background-color:white;border-style:outset;border-width:1px;border-color:#DCDCDC;border-bottom-right-radius:20px;border-bottom-left-radius:20px;font-family:arial;font-size:16px")
+        self.calendarTable.setItem(0,0, QTableWidgetItem("March 10-12 Puerto Galera"))
+        self.calendarTable.setItem(0,1, QTableWidgetItem("Malasimbo Festival"))
+        self.bookButton1 = QPushButton("BOOK NOW", clicked = lambda:self.BookWindow())
+        self.bookButton1.setStyleSheet("background-color:#101010;color:white;border: 10px solid;border-color:transparent;border-radius:15px;font-family:arial;font-weight:bold")
+        self.calendarTable.setCellWidget(0,2, self.bookButton1)
+        self.calendarTable.setItem(1,0, QTableWidgetItem("March 21 - 27"))
+        self.calendarTable.setItem(1,1, QTableWidgetItem("UNESCO-ITI World Theater Week"))
+        self.bookButton2 = QPushButton("BOOK NOW", clicked = lambda:self.BookWindow())
+        self.bookButton2.setStyleSheet("background-color:#101010;color:white;border: 10px solid;border-color:transparent;border-radius:15px;font-family:arial;font-weight:bold")
+        self.calendarTable.setCellWidget(1,2, self.bookButton2)
+        self.calendarTable.setItem(2,0, QTableWidgetItem("First Week of March"))
+        self.calendarTable.setItem(2,1, QTableWidgetItem("Island Garden City of Samal Festival"))
+        self.bookButton3 = QPushButton("BOOK NOW", clicked = lambda:self.BookWindow())
+        self.bookButton3.setStyleSheet("background-color:#101010;color:white;border: 10px solid;border-color:transparent;border-radius:15px;font-family:arial;font-weight:bold")
+        self.calendarTable.setCellWidget(2,2, self.bookButton3)
+        self.calendarTable.setItem(3,0, QTableWidgetItem("March 8 Compostela Valley Province"))
+        self.calendarTable.setItem(3,1, QTableWidgetItem("Anibina Bulawanun Festival"))
+        self.bookButton4 = QPushButton("BOOK NOW", clicked = lambda:self.BookWindow())
+        self.bookButton4.setStyleSheet("background-color:#101010;color:white;border: 10px solid;border-color:transparent;border-radius:15px;font-family:arial;font-weight:bold")
+        self.calendarTable.setCellWidget(3,2, self.bookButton4)
+        self.calendarTable.setItem(4,0, QTableWidgetItem("March-April"))
+        self.calendarTable.setItem(4,1, QTableWidgetItem("Holy Week"))
+        self.bookButton5 = QPushButton("BOOK NOW", clicked = lambda:self.BookWindow())
+        self.bookButton5.setStyleSheet("background-color:#101010;color:white;border: 10px solid;border-color:transparent;border-radius:15px;font-family:arial;font-weight:bold")
+        self.calendarTable.setCellWidget(4,2, self.bookButton5)
+        self.calendarTable.setItem(5,0, QTableWidgetItem("Holy Week Marinduque"))
+        self.calendarTable.setItem(5,1, QTableWidgetItem("Moriones Festival"))
+        self.bookButton6 = QPushButton("BOOK NOW", clicked = lambda:self.BookWindow())
+        self.bookButton6.setStyleSheet("background-color:#101010;color:white;border: 10px solid;border-color:transparent;border-radius:15px;font-family:arial;font-weight:bold")
+        self.calendarTable.setCellWidget(5,2, self.bookButton6)
+        self.calendarTable.setItem(6,0, QTableWidgetItem("Holy Week General Luna, Quezon"))
+        self.calendarTable.setItem(6,1, QTableWidgetItem("Centurion Festival"))
+        self.bookButton7 = QPushButton("BOOK NOW", clicked = lambda:self.BookWindow())
+        self.bookButton7.setStyleSheet("background-color:#101010;color:white;border: 10px solid;border-color:transparent;border-radius:15px;font-family:arial;font-weight:bold")
+        self.calendarTable.setCellWidget(6,2, self.bookButton7)
+        self.calendarTable.setItem(7,0, QTableWidgetItem("Good Friday Jordan, Guimaras"))
+        self.calendarTable.setItem(7,1, QTableWidgetItem("Ang Pagtaltal"))
+        self.bookButton8 = QPushButton("BOOK NOW", clicked = lambda:self.BookWindow())
+        self.bookButton8.setStyleSheet("background-color:#101010;color:white;border: 10px solid;border-color:transparent;border-radius:15px;font-family:arial;font-weight:bold")
+        self.calendarTable.setCellWidget(7,2, self.bookButton8)
+        self.calendarTable.setItem(8,0, QTableWidgetItem("Good Friday Nueva Valencia"))
+        self.calendarTable.setItem(8,1, QTableWidgetItem("Pangalap Ritual"))
+        self.bookButton9 = QPushButton("BOOK NOW", clicked = lambda:self.BookWindow())
+        self.bookButton9.setStyleSheet("background-color:#101010;color:white;border: 10px solid;border-color:transparent;border-radius:15px;font-family:arial;font-weight:bold")
+        self.calendarTable.setCellWidget(8,2, self.bookButton9)
+        self.calendarTable.setItem(9,0, QTableWidgetItem("Holy Week Siquijor"))
+        self.calendarTable.setItem(9,1, QTableWidgetItem("Witches Festival"))
+        self.bookButton10 = QPushButton("BOOK NOW", clicked = lambda:self.BookWindow())
+        self.bookButton10.setStyleSheet("background-color:#101010;color:white;border: 10px solid;border-color:transparent;border-radius:15px;font-family:arial;font-weight:bold")
+        self.calendarTable.setCellWidget(9,2, self.bookButton10)
+        self.calendarTable.setGeometry(700,307,550,362)
+        self.calendarTable.setStyleSheet("background-color:transparent;border-style:outset;border-width:1px;border-color:#DCDCDC;border-bottom-right-radius:20px;border-bottom-left-radius:20px;font-family:arial;font-size:16px")
         self.calendarTable.verticalHeader().setVisible(False)
         self.calendarTable.horizontalHeader().setVisible(False)
-        self.calendarTable.setShowGrid(True)
+        self.calendarTable.setShowGrid(False)
+        self.calendarTable.setEditTriggers(QAbstractItemView.NoEditTriggers)
+
         #statistics
         self.statBackground = QLabel(self)
         self.statBackground.setStyleSheet("background-color:#F8F8FF;border-style:outset;border-width:1px;border-color:#DCDCDC")
@@ -288,6 +405,11 @@ class mainUserUI(QWidget):
         self.statTierText2 = QLabel(f"{self.tier}", self)
         self.statTierText2.setStyleSheet("font-family:Arial;font-weight:bold;font-size:18px")
         self.statTierText2.move(1080,205)
+
+    def BookWindow(self):
+        self.setGeometry(300,150,1270,680)
+        self.PopUp=BookPopUp(self)
+        self.PopUp.show()
 
 
     def uploadProfilePic(self):
