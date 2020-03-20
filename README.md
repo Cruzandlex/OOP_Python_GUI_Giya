@@ -1,11 +1,13 @@
-# Giya
-Python Program </br>
-w/ PyQt5 Framework
+Members:
 
-------------
+GUZMAN, IVAN NORVY
+DELASOLEDAD, ERICKSON
+Cruz, Zandlex Keano
+Tarriela, Selwyn
 
-#### Programmers:
-Cruz, Zandlex Keano </br> 
-Dela Soledad, Erickson </br>
-Guzman, Ivan Norvy </br>
-Tarriela, Selwyn Zack </br>
+
+
+The database is not yet connected
+
+The one with working database is "loginninorvy.py"
+And the one that we had shown in the video presentation is "mainUI.py"
