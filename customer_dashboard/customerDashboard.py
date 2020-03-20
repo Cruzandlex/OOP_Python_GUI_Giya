@@ -8,14 +8,12 @@ class mainUserUI(QWidget):
     def __init__(self):
         super().__init__()
         self.title = 'GIYA - Customers UI'
-        self.x = 50
-        self.y = 40
         self.width = 1270
         self.height = 680
         self.Icon = "appLogoico.png"
         self.setWindowTitle(self.title)
         #self.setGeometry(self.x, self.y, self.width, self.height)
-        self.setGeometry(self.x,self.y,self.width,self.height)
+        self.setFixedSize(self.width,self.height)
         self.setWindowIcon(QIcon(self.Icon))
         self.imagePath = ""
 
@@ -407,7 +405,6 @@ class mainUserUI(QWidget):
         self.statTierText2.move(1080,205)
 
     def BookWindow(self):
-        self.setGeometry(300,150,1270,680)
         self.PopUp=BookPopUp(self)
         self.PopUp.show()
 
